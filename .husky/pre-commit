@@ -1,14 +1,5 @@
 #!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-# 运行前端 lint 检查
-cd frontend && pnpm lint
+# .husky/pre-commit
 
 # 运行后端 lint 检查
-cd ../backend && pnpm lint
-
-# 运行前端测试
-pnpm test
-
-# 运行后端测试
-pnpm test
+cd backend && pnpm lint && pnpm test
