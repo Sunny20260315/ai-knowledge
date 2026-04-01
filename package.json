@@ -1,0 +1,13 @@
+{
+  "name": "ai-knowledge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cd backend && pnpm run start:dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
