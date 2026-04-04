@@ -26,3 +26,9 @@ Module 4: Search（语义搜索）
 
 - GET /search?q=xxx\&kb=xxx — 跨文档语义搜索
 
+<br />
+
+## swagger 链接：
+
+## [Swagger UI 的默认地址是：http://localhost:3000/api](http://localhost:3000/api)
+
