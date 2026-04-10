@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+    # ========== ChromaDB 向量数据库 ==========
+    chromadb:
+        image: chromadb/chroma:latest
+        ports:
+            - "8000:8000"
+        volumes:
+            - chromadb_data:/chroma/chroma  # 持久化向量数据
+        environment:
+            - IS_PERSISTENT=TRUE
+            - ANONYMIZED_TELEMETRY=FALSE
+        restart: unless-stopped
+
+    # ========== 后端 NestJS ==========
+    backend:
+        build: 
+            context: ./backend
+            dockerfile: Dockerfile
+        ports:
+            - "3000:3000"
+        env_file:
+            - ./backend/.env.docker
+        volumes:
+            - backend_db:/app/db              # 持久化 SQLite 数据库
+            - backend_storage:/app/storage    # 持久化上传文件和临时文件
+        depends_on:
+            - chromadb
+        restart: unless-stopped
+
+    # ========== 前端 Next.js ==========
+    frontend:
+        build:
+            context: ./frontend
+            dockerfile: Dockerfile
+            args:
+                - NEXT_PUBLIC_API_BASE=http://backend:3000  # 使用 Docker 内部网络的服务名
+        ports:
+            - "3001:3000"  # 前端映射到宿主机 3001 端口，避免与后端冲突
+        depends_on:
+            - backend
+        restart: unless-stopped
+
+volumes:
+    chromadb_data:      # ChromaDB 数据持久化
+    backend_db:         # SQLite 数据库持久化
+    backend_storage:    # 上传文件持久化

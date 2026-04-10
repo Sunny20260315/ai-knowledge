@@ -201,6 +201,7 @@ export default function ChatPage() {
                 </svg>
               </button>
             </div>
+          <p className="text-center text-xs text-gray-400 mt-2">内容由 AI 生成，仅供参考，请仔细甄别</p>
           </div>
         </div>
       </div>

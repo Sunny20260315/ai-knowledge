@@ -26,6 +26,8 @@ export interface ChatSession {
   id: string;
   title: string;
   knowledgeBaseId: string;
+  isPinned: boolean;
+  pinnedAt: string | null;
   createdAt: string;
   updatedAt: string;
   messageCount?: number;

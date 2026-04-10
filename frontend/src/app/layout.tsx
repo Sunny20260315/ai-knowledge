@@ -34,8 +34,16 @@ export default function RootLayout({
         <aside className="w-60 bg-white flex flex-col border-r border-gray-200">
           {/* Logo */}
           <div className="px-4 py-4 flex items-center gap-2">
-            <Image src="/logo.png" alt="LocalBase" width={28} height={28} />
-            <span className="font-semibold text-base text-gray-800">LocalBase</span>
+            <Image
+              src="/logo.png"
+              alt="LocalBase"
+              width={28}
+              height={28}
+              style={{ width: 28, height: 'auto' }}
+            />
+            <span className="font-semibold text-base text-gray-800">
+              LocalBase
+            </span>
           </div>
           <Sidebar />
         </aside>

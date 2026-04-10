@@ -117,6 +117,17 @@ export async function getChatMessages(sessionId: string) {
 /** 删除会话 */
 export async function deleteChatSession(id: string) {
   const res = await fetch(`${API_BASE}/chat/${id}`, { method: 'DELETE' });
+  const text = await res.text();
+  return text ? JSON.parse(text) : {};
+}
+
+/** 更新会话（重命名、置顶等） */
+export async function updateChatSession(id: string, data: { title?: string; isPinned?: boolean }) {
+  const res = await fetch(`${API_BASE}/chat/${id}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
   return res.json();
 }
 
